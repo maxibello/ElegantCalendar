@@ -18,7 +18,7 @@ struct SmallWeekView: View, YearlyCalendarManagerDirectAccess {
     }
 
     var body: some View {
-        HStack(spacing: CalendarConstants.Yearly.daysGridHorizontalSpacing) {
+        HStack(spacing: 13) {
             ForEach(days, id: \.self) { day in
                 SmallDayView(calendarManager: self.calendarManager, week: self.week, day: day)
             }

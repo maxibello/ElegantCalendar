@@ -31,7 +31,7 @@ struct SmallMonthView: View, YearlyCalendarManagerDirectAccess {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 20) {
             monthText
             weeksViewStack
                 .frame(height: CalendarConstants.Yearly.daysStackHeight)
@@ -43,14 +43,14 @@ struct SmallMonthView: View, YearlyCalendarManagerDirectAccess {
     }
 
     private var monthText: some View {
-        Text(month.abbreviatedMonth.uppercased())
-            .font(.subheadline)
+        Text(month.abbreviatedMonth)
+            .font(.system(size: 16))
             .bold()
-            .foregroundColor(isWithinSameMonthAndYearAsToday ? theme.primary : .primary)
+            .foregroundColor(.primary)
     }
 
     private var weeksViewStack: some View {
-        VStack(spacing: CalendarConstants.Yearly.daysGridVerticalSpacing) {
+        VStack(spacing: 18) {
             ForEach(weeks, id: \.self) { week in
                 SmallWeekView(calendarManager: self.calendarManager, week: week)
             }

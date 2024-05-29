@@ -48,7 +48,10 @@ struct ExampleCalendarView: View {
 }
 
 extension ExampleCalendarView: ElegantCalendarDataSource {
-
+    var filledDays: [Date] {
+        []
+    }
+    
     func calendar(backgroundColorOpacityForDate date: Date) -> Double {
         let startOfDay = currentCalendar.startOfDay(for: date)
         return Double((visitsByDay[startOfDay]?.count ?? 0) + 3) / 15.0
@@ -63,6 +66,8 @@ extension ExampleCalendarView: ElegantCalendarDataSource {
         let startOfDay = currentCalendar.startOfDay(for: date)
         return VisitsListView(visits: visitsByDay[startOfDay] ?? [], height: size.height).erased
     }
+    
+    
     
 }
 

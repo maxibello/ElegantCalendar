@@ -26,4 +26,6 @@ public extension MonthlyCalendarDataSource {
 }
 
 // TODO: Depending on future design choices, this may need some functions and properties
-public protocol YearlyCalendarDataSource { }
+public protocol YearlyCalendarDataSource {
+    var filledDays: [Date] { get }
+}

@@ -15,7 +15,7 @@ struct YearView: View, YearlyCalendarManagerDirectAccess {
     }
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 40) {
+        VStack(alignment: .center, spacing: 40) {
             yearText
             monthsStack
             Spacer()
@@ -26,8 +26,8 @@ struct YearView: View, YearlyCalendarManagerDirectAccess {
 
     private var yearText: some View {
         Text(year.year)
-            .font(.system(size: 38, weight: .thin, design: .rounded))
-            .foregroundColor(isYearSameAsTodayYear ? theme.primary : .primary)
+            .font(.system(size: 16, weight: .bold, design: .rounded))
+            .foregroundColor(.primary)
     }
 
     private var monthsStack: some View {
@@ -40,7 +40,7 @@ struct YearView: View, YearlyCalendarManagerDirectAccess {
             months = []
         }
 
-        return VStack(spacing: CalendarConstants.Yearly.monthsGridSpacing) {
+        return VStack(spacing: 20) {
             ForEach(0..<CalendarConstants.Yearly.monthsInColumn, id: \.self) { row in
                 HStack(spacing: CalendarConstants.Yearly.monthsGridSpacing) {
                     ForEach(0..<CalendarConstants.Yearly.monthsInRow, id: \.self) { col in

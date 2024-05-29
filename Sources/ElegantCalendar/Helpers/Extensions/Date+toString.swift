@@ -30,7 +30,7 @@ extension DateFormatter {
 
     static var abbreviatedMonth: DateFormatter {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMM"
+        formatter.dateFormat = "MMMM"
         return formatter
     }
 

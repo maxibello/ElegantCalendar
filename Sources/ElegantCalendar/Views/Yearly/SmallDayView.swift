@@ -22,16 +22,33 @@ struct SmallDayView: View, YearlyCalendarManagerDirectAccess {
     }
 
     var body: some View {
-        Text(numericDay)
-            .font(.system(size: 8))
+        Circle()
+            .fill(isFilledDay() ? Color.primary : .secondary)
             .foregroundColor(isDayToday ? .systemBackground : .primary)
-            .frame(width: CalendarConstants.Yearly.dayWidth, height: CalendarConstants.Yearly.dayWidth)
-            .background(isDayToday ? Circle().fill(Color.primary) : nil)
+            .frame(width: 3, height: 3)
             .opacity(isDayWithinDateRange && isDayWithinWeekMonthAndYear ? 1 : 0)
     }
 
     private var numericDay: String {
         String(calendar.component(.day, from: day))
+    }
+    
+    private func isFilledDay() -> Bool {
+        guard let filledDays = calendarManager.datasource?.filledDays else { return false }
+        
+        for filledDay in filledDays {
+            if day >= calendar.startOfDay(for: filledDay) &&
+                day <= calendar.endOfDay(for: filledDay) {
+                return true
+            }
+        }
+        
+        return false
+    }
+    
+    private var isTodayWithinDateRange: Bool {
+        Date() >= calendar.startOfDay(for: startDate) &&
+            calendar.startOfDay(for: Date()) <= endDate
     }
 
 }
