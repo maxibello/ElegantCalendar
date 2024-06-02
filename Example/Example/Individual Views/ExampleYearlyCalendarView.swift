@@ -20,6 +20,7 @@ struct ExampleYearlyCalendarView: View {
         visitsByDay = Dictionary(grouping: ascVisits, by: { currentCalendar.startOfDay(for: $0.arrivalDate) })
 
         calendarManager.delegate = self
+        calendarManager.datasource = self
     }
 
     var body: some View {
@@ -50,6 +51,16 @@ extension ExampleYearlyCalendarView: YearlyCalendarDelegate {
         print("Will show year: \(date)")
     }
 
+}
+
+extension ExampleYearlyCalendarView: YearlyCalendarDataSource {
+    var font: Binding<String> {
+        .constant(ElegantCalendar.CalendarFonts.bookerly.rawValue)
+    }
+    
+    var filledDays: [Date] {
+        []
+    }
 }
 
 struct ExampleYearlyCalendarView_Previews: PreviewProvider {

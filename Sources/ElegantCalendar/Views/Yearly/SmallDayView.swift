@@ -2,6 +2,11 @@
 
 import SwiftUI
 
+extension BinaryInteger {
+    var isEven: Bool { isMultiple(of: 2) }
+    var isOdd:  Bool { !isEven }
+}
+
 struct SmallDayView: View, YearlyCalendarManagerDirectAccess {
 
     let calendarManager: YearlyCalendarManager
@@ -22,11 +27,11 @@ struct SmallDayView: View, YearlyCalendarManagerDirectAccess {
     }
 
     var body: some View {
-        Circle()
-            .fill(isFilledDay() ? Color.primary : .secondary)
-            .foregroundColor(isDayToday ? .systemBackground : .primary)
-            .frame(width: 3, height: 3)
-            .opacity(isDayWithinDateRange && isDayWithinWeekMonthAndYear ? 1 : 0)
+            Circle()
+                .fill(isFilledDay() ? Color.primary : .secondary)
+//                .foregroundColor(isDayToday ? .systemBackground : .primary)
+                .frame(width: isFilledDay() ? 6 : 3, height: isFilledDay() ? 6 : 3)
+                .opacity(isDayWithinDateRange && isDayWithinWeekMonthAndYear ? 1 : 0)
     }
 
     private var numericDay: String {

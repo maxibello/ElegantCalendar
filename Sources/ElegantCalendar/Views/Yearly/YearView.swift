@@ -26,7 +26,8 @@ struct YearView: View, YearlyCalendarManagerDirectAccess {
 
     private var yearText: some View {
         Text(year.year)
-            .font(.system(size: 16, weight: .bold, design: .rounded))
+            .font(.custom(calendarManager.datasource!.font.wrappedValue, size: 16))
+//            .font(.system(size: 16, weight: .bold, design: .rounded))
             .foregroundColor(.primary)
     }
 

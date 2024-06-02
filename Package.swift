@@ -1,4 +1,4 @@
-// swift-tools-version:5.1
+// swift-tools-version:5.6
 
 import PackageDescription
 
@@ -18,6 +18,8 @@ let package = Package(
     targets: [
         .target(
             name: "ElegantCalendar",
-            dependencies: ["ElegantPages"])
+            dependencies: ["ElegantPages"],
+            resources: [.process("Fonts")]
+        )
     ]
 )

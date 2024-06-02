@@ -19,6 +19,8 @@ public struct YearlyCalendarView: View, YearlyCalendarManagerDirectAccess {
     }
 
     public init(calendarManager: YearlyCalendarManager) {
+        ElegantCalendar.registerFonts()
+        
         self.calendarManager = calendarManager
     }
 

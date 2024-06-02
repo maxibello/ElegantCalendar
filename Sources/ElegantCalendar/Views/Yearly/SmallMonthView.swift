@@ -44,7 +44,7 @@ struct SmallMonthView: View, YearlyCalendarManagerDirectAccess {
 
     private var monthText: some View {
         Text(month.abbreviatedMonth)
-            .font(.system(size: 16))
+            .font(.custom(calendarManager.datasource!.font.wrappedValue, size: 16))
             .bold()
             .foregroundColor(.primary)
     }

@@ -18,11 +18,12 @@ struct SmallWeekView: View, YearlyCalendarManagerDirectAccess {
     }
 
     var body: some View {
-        HStack(spacing: 13) {
-            ForEach(days, id: \.self) { day in
-                SmallDayView(calendarManager: self.calendarManager, week: self.week, day: day)
+        HStack(spacing: 0) {
+                ForEach(days, id: \.self) { day in
+                    SmallDayView(calendarManager: self.calendarManager, week: self.week, day: day)
+                        .frame(maxWidth: .infinity)
+                }
             }
-        }
     }
 
 }

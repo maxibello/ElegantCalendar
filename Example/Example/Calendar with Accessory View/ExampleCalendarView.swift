@@ -52,6 +52,10 @@ extension ExampleCalendarView: ElegantCalendarDataSource {
         []
     }
     
+    var font: Binding<String> {
+        .constant(ElegantCalendar.CalendarFonts.bookerly.rawValue)
+    }
+    
     func calendar(backgroundColorOpacityForDate date: Date) -> Double {
         let startOfDay = currentCalendar.startOfDay(for: date)
         return Double((visitsByDay[startOfDay]?.count ?? 0) + 3) / 15.0
