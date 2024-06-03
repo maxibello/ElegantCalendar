@@ -46,6 +46,10 @@ extension ExampleYearlyCalendarView: YearlyCalendarDelegate {
     func calendar(didSelectMonth date: Date) {
         print("Selected month: \(date)")
     }
+    
+    func calendar(didSelectMonthTitle date: Date) {
+        print("Selected month title: \(date)")
+    }
 
     func calendar(willDisplayYear date: Date) {
         print("Will show year: \(date)")

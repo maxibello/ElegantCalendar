@@ -20,6 +20,7 @@ public extension MonthlyCalendarDelegate {
 
 public protocol YearlyCalendarDelegate {
 
+    func calendar(didSelectMonthTitle date: Date)
     func calendar(didSelectMonth date: Date)
     func calendar(willDisplayYear date: Date)
 
@@ -28,6 +29,7 @@ public protocol YearlyCalendarDelegate {
 public extension YearlyCalendarDelegate {
 
     func calendar(didSelectMonth date: Date) { }
+    func calendar(didSelectMonthTitle date: Date) { }
     func calendar(willDisplayYear date: Date) { }
 
 }

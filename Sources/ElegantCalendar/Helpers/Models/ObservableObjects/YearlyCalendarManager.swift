@@ -72,6 +72,11 @@ extension YearlyCalendarManager {
         delegate?.calendar(didSelectMonth: month)
         communicator?.scrollToMonthAndShowMonthlyView(month)
     }
+    
+    func monthTitleTapped(_ month: Date) {
+        delegate?.calendar(didSelectMonthTitle: month)
+        communicator?.scrollToMonthAndShowMonthlyView(month)
+    }
 
 }
 

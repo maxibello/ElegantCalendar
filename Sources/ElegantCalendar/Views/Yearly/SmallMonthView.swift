@@ -33,13 +33,15 @@ struct SmallMonthView: View, YearlyCalendarManagerDirectAccess {
     var body: some View {
         VStack(alignment: .leading, spacing: 20) {
             monthText
+                .onTapGesture(perform: currentMonthTitleSelected)
             weeksViewStack
                 .frame(height: CalendarConstants.Yearly.daysStackHeight)
+                .onTapGesture(perform: currentMonthSelected)
         }
         .frame(width: CalendarConstants.Yearly.monthWidth)
         .contentShape(Rectangle())
         .opacity(isWithinDateRange ? 1 : 0)
-        .onTapGesture(perform: currentMonthSelected)
+        
     }
 
     private var monthText: some View {
@@ -62,6 +64,10 @@ struct SmallMonthView: View, YearlyCalendarManagerDirectAccess {
 
     private func currentMonthSelected() {
         calendarManager.monthTapped(month)
+    }
+    
+    private func currentMonthTitleSelected() {
+        calendarManager.monthTitleTapped(month)
     }
 
 }

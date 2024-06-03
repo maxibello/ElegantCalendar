@@ -64,7 +64,7 @@ private extension MonthView {
         Text(month.year)
             .font(.custom(calendarManager.datasource!.font.wrappedValue, size: 12))
             .tracking(2)
-            .foregroundColor(isWithinSameMonthAndYearAsToday ? theme.titleColor : .gray)
+            .foregroundColor(.gray)
             .opacity(0.95)
     }
 
