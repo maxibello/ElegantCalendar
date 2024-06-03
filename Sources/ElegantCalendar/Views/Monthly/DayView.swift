@@ -3,55 +3,75 @@
 import SwiftUI
 
 struct DayView: View, MonthlyCalendarManagerDirectAccess {
-
     @Environment(\.calendarTheme) var theme: CalendarTheme
-
     @ObservedObject var calendarManager: MonthlyCalendarManager
-
+    
     let week: Date
     let day: Date
-
+    
     private var isDayWithinDateRange: Bool {
         day >= calendar.startOfDay(for: startDate) && day <= endDate
     }
-
+    
     private var isDayWithinWeekMonthAndYear: Bool {
         calendar.isDate(week, equalTo: day, toGranularities: [.month, .year])
     }
-
+    
     private var canSelectDay: Bool {
         datasource?.calendar(canSelectDate: day) ?? true
     }
-
+    
     private var isDaySelectableAndInRange: Bool {
         isDayWithinDateRange && isDayWithinWeekMonthAndYear && canSelectDay
     }
-
+    
     private var isDayToday: Bool {
         calendar.isDateInToday(day)
     }
-
+    
     private var isSelected: Bool {
         guard let selectedDate = selectedDate else { return false }
         return calendar.isDate(selectedDate, equalTo: day, toGranularities: [.day, .month, .year])
     }
-
+    
     var body: some View {
-        Text(numericDay)
-            .font(.footnote)
-            .foregroundColor(foregroundColor)
-            .frame(width: CalendarConstants.Monthly.dayWidth, height: CalendarConstants.Monthly.dayWidth)
-            .background(backgroundColor)
-            .clipShape(Circle())
-            .opacity(opacity)
-            .overlay(isSelected ? CircularSelectionView() : nil)
-            .onTapGesture(perform: notifyManager)
+        VStack {
+            Circle()
+                .fill(isFilledDay() ? Color.primary : .secondary)
+                .frame(width: isFilledDay() ? 10 : 5, height: isFilledDay() ? 10 : 5)
+                .opacity(opacity)
+            
+            isFilledDay() ?
+            Text(numericDay)
+                .font(.custom(calendarManager.datasource!.font.wrappedValue, size: 13))
+                .opacity(opacity)
+                
+            :
+            Text("")
+                .opacity(1)
+        }
+        .frame(maxWidth: .infinity)
+        .onTapGesture(perform: notifyManager)
     }
-
+    
+    private func isFilledDay() -> Bool {
+        guard let filledDays = calendarManager.datasource?.filledDays else { return false }
+        
+        for filledDay in filledDays {
+            if day >= calendar.startOfDay(for: filledDay) &&
+                day <= calendar.endOfDay(for: filledDay) {
+                return true
+            }
+        }
+        
+        return false
+        
+    }
+    
     private var numericDay: String {
         String(calendar.component(.day, from: day))
     }
-
+    
     private var foregroundColor: Color {
         if isDayToday {
             return theme.todayTextColor
@@ -59,7 +79,7 @@ struct DayView: View, MonthlyCalendarManagerDirectAccess {
             return theme.textColor
         }
     }
-
+    
     private var backgroundColor: some View {
         Group {
             if isDayToday {
@@ -72,26 +92,26 @@ struct DayView: View, MonthlyCalendarManagerDirectAccess {
             }
         }
     }
-
+    
     private var opacity: Double {
         guard !isDayToday else { return 1 }
         return isDaySelectableAndInRange ? 1 : 0.15
     }
-
+    
     private func notifyManager() {
         guard isDayWithinDateRange && canSelectDay else { return }
-
+        
         if isDayToday || isDayWithinWeekMonthAndYear {
             calendarManager.dayTapped(day: day, withHaptic: true)
         }
     }
-
+    
 }
 
 private struct CircularSelectionView: View {
-
+    
     @State private var startBounce = false
-
+    
     var body: some View {
         Circle()
             .stroke(Color.primary, lineWidth: 2)
@@ -100,22 +120,22 @@ private struct CircularSelectionView: View {
             .animation(.interpolatingSpring(stiffness: 150, damping: 10))
             .onAppear(perform: startBounceAnimation)
     }
-
+    
     private var radius: CGFloat {
         startBounce ? CalendarConstants.Monthly.dayWidth + 6 : CalendarConstants.Monthly.dayWidth + 25
     }
-
+    
     private func startBounceAnimation() {
         startBounce = true
     }
-
+    
 }
 
 struct DayView_Previews: PreviewProvider {
     static var previews: some View {
         LightDarkThemePreview {
             DayView(calendarManager: .mock, week: Date(), day: Date())
-
+            
             DayView(calendarManager: .mock, week: Date(), day: .daysFromToday(3))
         }
     }

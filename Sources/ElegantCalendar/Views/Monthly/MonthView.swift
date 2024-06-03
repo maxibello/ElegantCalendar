@@ -26,7 +26,7 @@ struct MonthView: View, MonthlyCalendarManagerDirectAccess {
     var body: some View {
         VStack(spacing: 40) {
             monthYearHeader
-                .padding(.leading, CalendarConstants.Monthly.outerHorizontalPadding)
+//                .padding(.leading, CalendarConstants.Monthly.outerHorizontalPadding)
                 .onTapGesture { self.communicator?.showYearlyView() }
             weeksViewWithDaysOfWeekHeader
             if selectedDate != nil {
@@ -37,6 +37,7 @@ struct MonthView: View, MonthlyCalendarManagerDirectAccess {
             Spacer()
         }
         .padding(.top, CalendarConstants.Monthly.topPadding)
+        .padding(.horizontal, 30)
         .frame(width: CalendarConstants.Monthly.cellWidth, height: CalendarConstants.cellHeight)
     }
 
@@ -45,26 +46,23 @@ struct MonthView: View, MonthlyCalendarManagerDirectAccess {
 private extension MonthView {
 
     var monthYearHeader: some View {
-        HStack {
-            VStack(alignment: .leading) {
-                monthText
-                yearText
-            }
-            Spacer()
+        VStack {
+            monthText
+            yearText
         }
     }
 
     var monthText: some View {
-        Text(month.fullMonth.uppercased())
-            .font(.system(size: 26))
+        Text(month.fullMonth)
+            .font(.custom(calendarManager.datasource!.font.wrappedValue, size: 26))
             .bold()
             .tracking(7)
-            .foregroundColor(isWithinSameMonthAndYearAsToday ? theme.titleColor : .primary)
+            .foregroundColor(.primary)
     }
 
     var yearText: some View {
         Text(month.year)
-            .font(.system(size: 12))
+            .font(.custom(calendarManager.datasource!.font.wrappedValue, size: 12))
             .tracking(2)
             .foregroundColor(isWithinSameMonthAndYearAsToday ? theme.titleColor : .gray)
             .opacity(0.95)
@@ -75,10 +73,11 @@ private extension MonthView {
 private extension MonthView {
 
     var weeksViewWithDaysOfWeekHeader: some View {
-        VStack(spacing: 32) {
-            daysOfWeekHeader
-            weeksViewStack
-        }
+//        VStack(spacing: 32) {
+////            daysOfWeekHeader
+//            weeksViewStack
+//        }
+        weeksViewStack
     }
 
     var daysOfWeekHeader: some View {
@@ -93,11 +92,12 @@ private extension MonthView {
     }
 
     var weeksViewStack: some View {
-        VStack(spacing: CalendarConstants.Monthly.gridSpacing) {
+        VStack(spacing: 30) {
             ForEach(weeks, id: \.self) { week in
                 WeekView(calendarManager: self.calendarManager, week: week)
             }
         }
+//        .frame(maxHeight: .infinity)
     }
 
 }

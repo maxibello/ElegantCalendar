@@ -42,21 +42,24 @@ struct ExampleMonthlyCalendarView: View {
 }
 
 extension ExampleMonthlyCalendarView: MonthlyCalendarDataSource {
-
-    func calendar(backgroundColorOpacityForDate date: Date) -> Double {
-        let startOfDay = currentCalendar.startOfDay(for: date)
-        return Double((visitsByDay[startOfDay]?.count ?? 0) + 3) / 15.0
+    
+    var font: Binding<String> {
+        .constant(ElegantCalendar.CalendarFonts.bookerly.rawValue)
+    }
+    
+    var filledDays: [Date] {
+        []
     }
 
-    func calendar(canSelectDate date: Date) -> Bool {
-        let day = currentCalendar.dateComponents([.day], from: date).day!
-        return day != 4
-    }
-
-    func calendar(viewForSelectedDate date: Date, dimensions size: CGSize) -> AnyView {
-        let startOfDay = currentCalendar.startOfDay(for: date)
-        return VisitsListView(visits: visitsByDay[startOfDay] ?? [], height: size.height).erased
-    }
+//    func calendar(backgroundColorOpacityForDate date: Date) -> Double {
+//        let startOfDay = currentCalendar.startOfDay(for: date)
+//        return Double((visitsByDay[startOfDay]?.count ?? 0) + 3) / 15.0
+//    }
+//
+//    func calendar(viewForSelectedDate date: Date, dimensions size: CGSize) -> AnyView {
+//        let startOfDay = currentCalendar.startOfDay(for: date)
+//        return VisitsListView(visits: visitsByDay[startOfDay] ?? [], height: size.height).erased
+//    }
 
 }
 

@@ -18,11 +18,11 @@ struct WeekView: View, MonthlyCalendarManagerDirectAccess {
     }
 
     var body: some View {
-        HStack(spacing: CalendarConstants.Monthly.gridSpacing) {
+        HStack(alignment: .top) {
             ForEach(days, id: \.self) { day in
                 DayView(calendarManager: self.calendarManager, week: self.week, day: day)
             }
-        }
+        }.frame(maxWidth: .infinity)
     }
 
 }
