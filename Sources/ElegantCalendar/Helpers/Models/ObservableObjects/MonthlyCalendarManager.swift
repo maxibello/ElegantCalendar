@@ -91,13 +91,18 @@ extension MonthlyCalendarManager {
         return canSelectDay
     }
 
-    func dayTapped(day: Date, withHaptic: Bool) {
+    func dayTapped(day: Date, withHaptic: Bool, isFilled: Bool = false) {
         if allowsHaptics && withHaptic {
             UIImpactFeedbackGenerator.generateSelectionHaptic()
         }
 
         selectedDate = day
-        delegate?.calendar(didSelectDay: day)
+        
+        if isFilled {
+            delegate?.calendar(didSelectFilledDay: day)
+        } else {
+            delegate?.calendar(didSelectEmptyDay: day)
+        }
     }
 
     @discardableResult

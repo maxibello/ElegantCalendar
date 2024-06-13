@@ -6,7 +6,8 @@ public protocol ElegantCalendarDelegate: MonthlyCalendarDelegate, YearlyCalendar
 
 public protocol MonthlyCalendarDelegate {
 
-    func calendar(didSelectDay date: Date)
+    func calendar(didSelectFilledDay date: Date)
+    func calendar(didSelectEmptyDay date: Date)
     func calendar(willDisplayMonth date: Date)
 
 }

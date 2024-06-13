@@ -102,7 +102,11 @@ struct DayView: View, MonthlyCalendarManagerDirectAccess {
         guard isDayWithinDateRange && canSelectDay else { return }
         
         if isDayToday || isDayWithinWeekMonthAndYear {
-            calendarManager.dayTapped(day: day, withHaptic: true)
+            calendarManager.dayTapped(
+                day: day,
+                withHaptic: true,
+                isFilled: isFilledDay()
+            )
         }
     }
     
