@@ -77,8 +77,12 @@ extension ExampleCalendarView: ElegantCalendarDataSource {
 
 extension ExampleCalendarView: ElegantCalendarDelegate {
 
-    func calendar(didSelectDay date: Date) {
-        print("Selected date: \(date)")
+    func calendar(didSelectFilledDay date: Date) {
+        print("Selected filled date: \(date)")
+    }
+    
+    func calendar(didSelectEmptyDay date: Date) {
+        print("Selected empty date: \(date)")
     }
 
     func calendar(willDisplayMonth date: Date) {

@@ -5,7 +5,6 @@ import SwiftUI
 public protocol ElegantCalendarDataSource: MonthlyCalendarDataSource, YearlyCalendarDataSource { }
 
 public protocol MonthlyCalendarDataSource {
-    var filledDays: [Date] { get }
     var font: Binding<String> { get }
 
     func calendar(backgroundColorOpacityForDate date: Date) -> Double

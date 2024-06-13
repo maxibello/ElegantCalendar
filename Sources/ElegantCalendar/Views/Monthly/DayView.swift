@@ -55,9 +55,9 @@ struct DayView: View, MonthlyCalendarManagerDirectAccess {
     }
     
     private func isFilledDay() -> Bool {
-        guard let filledDays = calendarManager.datasource?.filledDays else { return false }
+//        guard let filledDays = calendarManager.filledDays else { return false }
         
-        for filledDay in filledDays {
+        for filledDay in calendarManager.filledDays {
             if day >= calendar.startOfDay(for: filledDay) &&
                 day <= calendar.endOfDay(for: filledDay) {
                 return true

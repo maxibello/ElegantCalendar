@@ -9,10 +9,12 @@ public class MonthlyCalendarManager: ObservableObject, ConfigurationDirectAccess
     @Published public private(set) var currentMonth: Date
     @Published public var selectedDate: Date? = nil
 
-    let listManager: ElegantListManager
+    public let listManager: ElegantListManager
 
     @Published public var datasource: MonthlyCalendarDataSource?
     @Published public var delegate: MonthlyCalendarDelegate?
+    
+    @Published public var filledDays: [Date] = []
 
     public var communicator: ElegantCalendarCommunicator?
 

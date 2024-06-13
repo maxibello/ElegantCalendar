@@ -20,7 +20,15 @@ class SelectionModel: ObservableObject {
 
 extension SelectionModel: ElegantCalendarDelegate {
 
-    func calendar(didSelectDay date: Date) {
+    func calendar(didSelectFilledDay date: Date) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            withAnimation(turnAnimation) {
+                self.showCalendar = false
+            }
+        }
+    }
+    
+    func calendar(didSelectEmptyDay date: Date) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             withAnimation(turnAnimation) {
                 self.showCalendar = false
