@@ -55,17 +55,7 @@ struct DayView: View, MonthlyCalendarManagerDirectAccess {
     }
     
     private func isFilledDay() -> Bool {
-//        guard let filledDays = calendarManager.filledDays else { return false }
-        
-        for filledDay in calendarManager.filledDays {
-            if day >= calendar.startOfDay(for: filledDay) &&
-                day <= calendar.endOfDay(for: filledDay) {
-                return true
-            }
-        }
-        
-        return false
-        
+        return calendarManager.filledDays[calendar.startOfDay(for: day)] != nil
     }
     
     private var numericDay: String {

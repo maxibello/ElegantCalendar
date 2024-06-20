@@ -48,8 +48,8 @@ struct ExampleCalendarView: View {
 }
 
 extension ExampleCalendarView: ElegantCalendarDataSource {
-    var filledDays: [Date] {
-        []
+    var filledDays: [Date: Bool] {
+        [:]
     }
     
     var font: Binding<String> {

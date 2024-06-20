@@ -41,14 +41,7 @@ struct SmallDayView: View, YearlyCalendarManagerDirectAccess {
     private func isFilledDay() -> Bool {
         guard let filledDays = calendarManager.datasource?.filledDays else { return false }
         
-        for filledDay in filledDays {
-            if day >= calendar.startOfDay(for: filledDay) &&
-                day <= calendar.endOfDay(for: filledDay) {
-                return true
-            }
-        }
-        
-        return false
+        return filledDays[calendar.startOfDay(for: day)] != nil
     }
     
     private var isTodayWithinDateRange: Bool {

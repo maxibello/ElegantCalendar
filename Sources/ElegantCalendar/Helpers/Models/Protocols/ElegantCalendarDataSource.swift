@@ -28,7 +28,7 @@ public extension MonthlyCalendarDataSource {
 
 // TODO: Depending on future design choices, this may need some functions and properties
 public protocol YearlyCalendarDataSource {
-    var filledDays: [Date] { get }
+    var filledDays: [Date: Bool] { get }
     
     var font: Binding<String> { get }
 }

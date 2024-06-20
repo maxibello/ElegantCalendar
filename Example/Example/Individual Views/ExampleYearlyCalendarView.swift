@@ -62,8 +62,8 @@ extension ExampleYearlyCalendarView: YearlyCalendarDataSource {
         .constant(ElegantCalendar.CalendarFonts.bookerly.rawValue)
     }
     
-    var filledDays: [Date] {
-        []
+    var filledDays: [Date: Bool] {
+        [:]
     }
 }
 

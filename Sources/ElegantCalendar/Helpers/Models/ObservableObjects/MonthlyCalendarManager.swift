@@ -14,7 +14,7 @@ public class MonthlyCalendarManager: ObservableObject, ConfigurationDirectAccess
     @Published public var datasource: MonthlyCalendarDataSource?
     @Published public var delegate: MonthlyCalendarDelegate?
     
-    @Published public var filledDays: [Date] = []
+    @Published public var filledDays: [Date: Bool] = [:]
 
     public var communicator: ElegantCalendarCommunicator?
 
