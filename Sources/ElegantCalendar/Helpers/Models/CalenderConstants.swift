@@ -39,7 +39,7 @@ struct CalendarConstants {
 
         static let monthsInRow = 3
         static let monthsInColumn = 4
-        static let monthsGridSpacing: CGFloat = 4
+        static let monthsGridSpacing: CGFloat = 8
         static let monthWidth: CGFloat = {
             let totalHorizontalPadding: CGFloat = 2 * horizontalPadding
             let innerGridSpacing: CGFloat = CGFloat(monthsInRow - 1) * monthsGridSpacing

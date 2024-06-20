@@ -34,8 +34,10 @@ struct SmallMonthView: View, YearlyCalendarManagerDirectAccess {
         VStack(alignment: .leading, spacing: 20) {
             monthText
                 .onTapGesture(perform: currentMonthTitleSelected)
+            
             weeksViewStack
-                .frame(height: CalendarConstants.Yearly.daysStackHeight)
+                .frame(height: 90)
+                .fixedSize(horizontal: false, vertical: true)
                 .onTapGesture(perform: currentMonthSelected)
         }
         .frame(width: CalendarConstants.Yearly.monthWidth)
@@ -52,13 +54,11 @@ struct SmallMonthView: View, YearlyCalendarManagerDirectAccess {
     }
 
     private var weeksViewStack: some View {
-        VStack(spacing: 18) {
+        VStack(spacing: 10) {
             ForEach(weeks, id: \.self) { week in
                 SmallWeekView(calendarManager: self.calendarManager, week: week)
             }
-            if weeks.count == 5 {
-                Spacer()
-            }
+            Spacer()
         }
     }
 

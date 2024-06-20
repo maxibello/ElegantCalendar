@@ -40,9 +40,9 @@ struct YearView: View, YearlyCalendarManagerDirectAccess {
             months = []
         }
 
-        return VStack(spacing: 20) {
+        return VStack(alignment: .leading, spacing: 10) {
             ForEach(0..<CalendarConstants.Yearly.monthsInColumn, id: \.self) { row in
-                HStack(spacing: CalendarConstants.Yearly.monthsGridSpacing) {
+                HStack(alignment: .top, spacing: CalendarConstants.Yearly.monthsGridSpacing) {
                     ForEach(0..<CalendarConstants.Yearly.monthsInRow, id: \.self) { col in
                         SmallMonthView(calendarManager: self.calendarManager, month: months[row*CalendarConstants.Yearly.monthsInRow + col])
                     }

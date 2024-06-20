@@ -18,7 +18,7 @@ struct SmallWeekView: View, YearlyCalendarManagerDirectAccess {
     }
 
     var body: some View {
-        HStack(spacing: 0) {
+        HStack(alignment: .top, spacing: 0) {
                 ForEach(days, id: \.self) { day in
                     SmallDayView(calendarManager: self.calendarManager, week: self.week, day: day)
                         .frame(maxWidth: .infinity)
