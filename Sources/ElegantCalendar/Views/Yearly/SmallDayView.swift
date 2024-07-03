@@ -27,11 +27,19 @@ struct SmallDayView: View, YearlyCalendarManagerDirectAccess {
     }
 
     var body: some View {
+        if isFilledDay() {
             Circle()
-                .fill(isFilledDay() ? Color.primary : .secondary)
+                .fill(Color.primary)
 //                .foregroundColor(isDayToday ? .systemBackground : .primary)
-                .frame(width: isFilledDay() ? 6 : 3, height: isFilledDay() ? 6 : 3)
+                .frame(width: 6, height: 6)
                 .opacity(isDayWithinDateRange && isDayWithinWeekMonthAndYear ? 1 : 0)
+        } else {
+            Circle()
+                .fill(Color.secondary)
+//                .foregroundColor(isDayToday ? .systemBackground : .primary)
+                .frame(width: 3, height: 3)
+                .opacity(isDayWithinDateRange && isDayWithinWeekMonthAndYear ? 1 : 0)
+        }
     }
 
     private var numericDay: String {

@@ -22,7 +22,8 @@ struct WeekView: View, MonthlyCalendarManagerDirectAccess {
             ForEach(days, id: \.self) { day in
                 DayView(calendarManager: self.calendarManager, week: self.week, day: day)
             }
-        }.frame(maxWidth: .infinity)
+        }.frame(maxWidth: .infinity, minHeight: 40)
+            
     }
 
 }

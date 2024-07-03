@@ -92,7 +92,7 @@ private extension MonthView {
     }
 
     var weeksViewStack: some View {
-        VStack(spacing: 30) {
+        VStack(spacing: 5) {
             ForEach(weeks, id: \.self) { week in
                 WeekView(calendarManager: self.calendarManager, week: week)
             }

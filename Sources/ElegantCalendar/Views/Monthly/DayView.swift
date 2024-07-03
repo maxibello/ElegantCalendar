@@ -36,19 +36,22 @@ struct DayView: View, MonthlyCalendarManagerDirectAccess {
     
     var body: some View {
         VStack {
-            Circle()
-                .fill(isFilledDay() ? Color.primary : .secondary)
-                .frame(width: isFilledDay() ? 10 : 5, height: isFilledDay() ? 10 : 5)
-                .opacity(opacity)
-            
-            isFilledDay() ?
-            Text(numericDay)
-                .font(.custom(calendarManager.datasource!.font.wrappedValue, size: 13))
-                .opacity(opacity)
+            if isFilledDay() {
+                Circle()
+                    .fill(Color.primary)
+                    .frame(width: 10, height: 10)
+                    .opacity(opacity)
                 
-            :
-            Text("")
-                .opacity(1)
+                Text(numericDay)
+                    .font(.custom(calendarManager.datasource!.font.wrappedValue, size: 13))
+                    .opacity(opacity)
+            } else {
+                Circle()
+                    .fill(Color.secondary)
+                    .frame(width: 5, height: 5)
+                    .opacity(opacity)
+                    .padding(.top, 2.5)
+            }
         }
         .frame(maxWidth: .infinity)
         .onTapGesture(perform: notifyManager)
