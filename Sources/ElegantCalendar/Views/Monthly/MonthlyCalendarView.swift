@@ -88,13 +88,25 @@ public struct MonthlyCalendarView: View, MonthlyCalendarManagerDirectAccess {
                     
                     DispatchQueue.main.async {   // <--- workaround
                         withAnimation(Animation.easeInOut(duration: 1).delay(1)) {
-                            reader.scrollTo(calendarManager.currentMonth.timeIntervalSince1970, anchor: .top)
+                            reader.scrollTo(calendarManager.targetScroll, anchor: .top)
                             
                             print("Scrolled to id: \(calendarManager.currentMonth.timeIntervalSince1970)")
                         }
+                        calendarManager.targetScroll = nil
                     }
                 }
             }
+            .onChange(of: calendarManager.targetScroll) { target in
+                if let target {
+                    calendarManager.targetScroll = nil
+                    withAnimation {
+                        reader.scrollTo(target, anchor: .center)
+                    }
+                    
+                }
+                
+            }
+            
         }
     }
     

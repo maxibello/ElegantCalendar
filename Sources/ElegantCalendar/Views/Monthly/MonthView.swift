@@ -54,7 +54,7 @@ private extension MonthView {
 
     var monthText: some View {
         Text(month.fullMonth)
-            .font(.custom(calendarManager.datasource!.font.wrappedValue, size: 26))
+            .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "CoFoSansMonoVFTrial-Regular", size: 26))
             .bold()
             .tracking(7)
             .foregroundColor(.primary)
@@ -62,7 +62,7 @@ private extension MonthView {
 
     var yearText: some View {
         Text(month.year)
-            .font(.custom(calendarManager.datasource!.font.wrappedValue, size: 12))
+            .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "CoFoSansMonoVFTrial-Regular", size: 12))
             .tracking(2)
             .foregroundColor(.gray)
             .opacity(0.95)

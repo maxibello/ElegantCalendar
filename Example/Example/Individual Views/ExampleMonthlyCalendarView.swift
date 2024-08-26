@@ -36,7 +36,10 @@ struct ExampleMonthlyCalendarView: View {
     }
 
     private var changeThemeButton: some View {
-        ChangeThemeButton(calendarTheme: $calendarTheme)
+//        ChangeThemeButton(calendarTheme: $calendarTheme)
+        Button(action: calendarManager.scrollToToday, label: {
+            Text("SCROLL TO TODAY")
+        })
     }
 
 }

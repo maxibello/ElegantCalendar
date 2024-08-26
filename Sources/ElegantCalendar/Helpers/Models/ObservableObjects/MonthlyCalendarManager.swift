@@ -15,6 +15,7 @@ public class MonthlyCalendarManager: ObservableObject, ConfigurationDirectAccess
     @Published public var delegate: MonthlyCalendarDelegate?
     
     @Published public var filledDays: [Date: Bool] = [:]
+    @Published var targetScroll: Double?
 
     public var communicator: ElegantCalendarCommunicator?
 
@@ -45,10 +46,18 @@ public class MonthlyCalendarManager: ObservableObject, ConfigurationDirectAccess
 
         listManager = .init(startingPage: startingPage,
                              pageCount: months.count)
+        
+        self.targetScroll = months[startingPage].timeIntervalSince1970
 
         anyCancellable = $delegate.sink {
             $0?.calendar(willDisplayMonth: self.currentMonth)
         }
+        
+        
+    }
+    
+    public func scrollToToday() {
+        targetScroll = Calendar.current.startOfMonth(for: Date()).timeIntervalSince1970
     }
 
 }
