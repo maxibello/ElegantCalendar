@@ -36,21 +36,20 @@ struct DayView: View, MonthlyCalendarManagerDirectAccess {
     
     var body: some View {
         VStack {
-            if isFilledDay() {
-                Circle()
-                    .fill(Color.primary)
-                    .frame(width: 10, height: 10)
-                    .opacity(opacity)
-                
+            if isDayToday {
                 Text(numericDay)
-                    .font(.custom(calendarManager.datasource!.font.wrappedValue, size: 13))
-                    .opacity(opacity)
+                    .foregroundColor(Color.todayText)
+                    .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 17))
+//                    .opacity(opacity)
+                    .background {
+                        Circle()
+                            .fill(Color.todayBackground)
+                            .frame(width: 40, height: 40)
+                    }
             } else {
-                Circle()
-                    .fill(Color.secondary)
-                    .frame(width: 5, height: 5)
+                Text(numericDay)
+                    .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 17))
                     .opacity(opacity)
-                    .padding(.top, 2.5)
             }
         }
         .frame(maxWidth: .infinity)
@@ -87,8 +86,8 @@ struct DayView: View, MonthlyCalendarManagerDirectAccess {
     }
     
     private var opacity: Double {
-        guard !isDayToday else { return 1 }
-        return isDaySelectableAndInRange ? 1 : 0.15
+//        guard !isFilledDay() else { return 1 }
+        return isDaySelectableAndInRange && isFilledDay() ? 1 : 0.15
     }
     
     private func notifyManager() {

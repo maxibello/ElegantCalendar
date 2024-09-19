@@ -24,10 +24,12 @@ struct MonthView: View, MonthlyCalendarManagerDirectAccess {
     }
 
     var body: some View {
-        VStack(spacing: 40) {
+        VStack(alignment: .leading, spacing: 40) {
             monthYearHeader
+                .padding(.leading, 14)
 //                .padding(.leading, CalendarConstants.Monthly.outerHorizontalPadding)
                 .onTapGesture { self.communicator?.showYearlyView() }
+            
             weeksViewWithDaysOfWeekHeader
 //            if selectedDate != nil {
 //                calenderAccessoryView
@@ -46,15 +48,17 @@ struct MonthView: View, MonthlyCalendarManagerDirectAccess {
 private extension MonthView {
 
     var monthYearHeader: some View {
-        VStack {
-            monthText
-            yearText
-        }
+//        VStack {
+//            monthText
+//            yearText
+//        }
+        Text("\(month.fullMonth), \(month.year)")
+            .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 17))
     }
 
     var monthText: some View {
         Text(month.fullMonth)
-            .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "CoFoSansMonoVFTrial-Regular", size: 26))
+            .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 26))
             .bold()
             .tracking(7)
             .foregroundColor(.primary)
@@ -62,7 +66,7 @@ private extension MonthView {
 
     var yearText: some View {
         Text(month.year)
-            .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "CoFoSansMonoVFTrial-Regular", size: 12))
+            .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 12))
             .tracking(2)
             .foregroundColor(.gray)
             .opacity(0.95)

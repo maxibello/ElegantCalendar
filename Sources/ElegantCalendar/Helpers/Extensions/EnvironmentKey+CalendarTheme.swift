@@ -57,7 +57,7 @@ extension EnvironmentValues {
 
 }
 
-private extension Color {
+public extension Color {
 
     static let brilliantViolet = Color("brilliantViolet")
     static let craftBrown = Color("craftBrown")
@@ -67,5 +67,7 @@ private extension Color {
     static let orangeYellow = Color("orangeYellow")
     static let red = Color("red")
     static let royalBlue = Color("royalBlue")
+    static let todayBackground = Color("todayBackground")
+    static let todayText = Color("todayText")
 
 }

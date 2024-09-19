@@ -24,15 +24,17 @@ struct ExampleMonthlyCalendarView: View {
     }
 
     var body: some View {
-        ZStack {
-            MonthlyCalendarView(calendarManager: calendarManager)
-                .theme(calendarTheme)
-            VStack {
-                Spacer()
-                changeThemeButton
-                    .padding(.bottom, 50)
-            }
-        }
+//        ZStack {
+//            MonthlyCalendarView(calendarManager: calendarManager)
+//                .theme(calendarTheme)
+//            VStack {
+//                Spacer()
+//                changeThemeButton
+//                    .padding(.bottom, 50)
+//            }
+//        }
+        MonthlyCalendarView(calendarManager: calendarManager)
+            .theme(calendarTheme)
     }
 
     private var changeThemeButton: some View {
