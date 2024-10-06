@@ -26,7 +26,8 @@ struct YearView: View, YearlyCalendarManagerDirectAccess {
 
     private var yearText: some View {
         Text(year.year)
-            .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 17))
+            .font(.system(size: 17))
+//            .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 17))
             .foregroundColor(.primary)
     }
 

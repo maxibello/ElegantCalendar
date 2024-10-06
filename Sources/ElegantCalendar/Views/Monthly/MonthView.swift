@@ -53,20 +53,24 @@ private extension MonthView {
 //            yearText
 //        }
         Text("\(month.fullMonth), \(month.year)")
-            .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 17))
+//            .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 17))
+            .font(.system(size: 17))
     }
 
     var monthText: some View {
         Text(month.fullMonth)
-            .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 26))
+//            .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 26))
+            .font(.system(size: 26))
             .bold()
             .tracking(7)
             .foregroundColor(.primary)
+//            .opacity(isWithinSameMonthAndYearAsToday ? 1 : 0)
     }
 
     var yearText: some View {
         Text(month.year)
-            .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 12))
+//            .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 12))
+            .font(.system(size: 12))
             .tracking(2)
             .foregroundColor(.gray)
             .opacity(0.95)

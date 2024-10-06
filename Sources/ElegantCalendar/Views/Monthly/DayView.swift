@@ -36,10 +36,11 @@ struct DayView: View, MonthlyCalendarManagerDirectAccess {
     
     var body: some View {
         VStack {
-            if isDayToday {
+            if isDayWithinWeekMonthAndYear && isDayToday {
                 Text(numericDay)
                     .foregroundColor(Color.todayText)
-                    .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 17))
+//                    .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 17))
+                    .font(.system(size: 17))
 //                    .opacity(opacity)
                     .background {
                         Circle()
@@ -48,7 +49,8 @@ struct DayView: View, MonthlyCalendarManagerDirectAccess {
                     }
             } else {
                 Text(numericDay)
-                    .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 17))
+//                    .font(.custom(calendarManager.datasource?.font.wrappedValue ?? "SFProText-Regular", size: 17))
+                    .font(.system(size: 17))
                     .opacity(opacity)
             }
         }
@@ -72,21 +74,24 @@ struct DayView: View, MonthlyCalendarManagerDirectAccess {
         }
     }
     
-    private var backgroundColor: some View {
-        Group {
-            if isDayToday {
-                theme.todayBackgroundColor
-            } else if isDaySelectableAndInRange {
-                theme.primary
-                    .opacity(datasource?.calendar(backgroundColorOpacityForDate: day) ?? 1)
-            } else {
-                Color.clear
-            }
-        }
-    }
+//    private var backgroundColor: some View {
+//        Group {
+//            if isDayToday {
+//                theme.todayBackgroundColor
+//            } else if isDaySelectableAndInRange {
+//                theme.primary
+//                    .opacity(datasource?.calendar(backgroundColorOpacityForDate: day) ?? 1)
+//            } else {
+//                Color.clear
+//            }
+//        }
+//    }
     
     private var opacity: Double {
 //        guard !isFilledDay() else { return 1 }
+        guard isDayWithinWeekMonthAndYear else {
+            return 0
+        }
         return isDaySelectableAndInRange && isFilledDay() ? 1 : 0.15
     }
     
